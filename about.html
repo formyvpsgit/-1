@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About the Ruya project: the idea, the team, and the protection methods we use.">
+  <title>About the Project | Ruya</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/motion.css?v=5">
+  <link rel="stylesheet" href="assets/css/about.css?v=5">
+</head>
+<body>
+  <div id="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand"><span class="brand-mark"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle class="ring" cx="16" cy="16" r="14.2"/><circle cx="16" cy="16" r="11.5"/><path d="m10.5 20.5 4.5-4.5 3 3 4.5-6"/><path d="M19 13h3.5v3.5"/></svg></span> Ruya</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="learn.html">Learn</a>
+        <a href="about.html" class="active">About</a>
+        <span class="credit-chip" id="creditChip">Daily credits —</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-hero">
+      <img class="about-bg" src="assets/img/about-hero-wide.jpg" alt="Dubai skyline at night, birds-eye panorama" data-parallax="0.12">
+      <div class="fireflies" aria-hidden="true">
+        <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+        <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+      </div>
+      <div class="container about-hero-content">
+        <span class="eyebrow reveal from-down">About the project</span>
+        <h1 class="section-title reveal">Ruya: clearer planning<br>for a stable financial life</h1>
+        <p class="section-sub reveal">A shared educational hackathon project that puts AI to work for the financial literacy of citizens and residents.</p>
+      </div>
+    </section>
+
+    <!-- The idea -->
+    <section>
+      <div class="container split">
+        <div class="reveal from-right">
+          <span class="eyebrow">The idea</span>
+          <h2 class="section-title"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true" style="display:inline-block;vertical-align:-3px;margin-right:4px"><path d="M9 18h6M10 21h4"/><path d="M12 3a6.5 6.5 0 0 0-3.8 11.7c.6.5 1 1.2 1 2h5.6c0-.8.4-1.5 1-2A6.5 6.5 0 0 0 12 3z"/></svg>Born from a real need</h2>
+          <p class="body-text">
+            Many young people and families in the UAE want to save or invest, but don't know where to start —
+            and a licensed financial advisor is usually expensive. "Ruya" bridges that gap with an AI-powered
+            analysis engine that understands the context of the UAE economy and turns a few simple numbers into
+            an actionable plan within seconds.
+          </p>
+          <p class="body-text">
+            The goal is not to give licensed investment advice — it's to raise financial awareness, steer personal
+            liquidity toward organized local channels, and avoid the common mistakes that lead to debt.
+          </p>
+        </div>
+        <div class="panel highlight reveal from-left" data-spotlight>
+          <h3>What does Ruya offer?</h3>
+          <ul class="check">
+            <li>Instant analysis of income and commitments with a 50/30/20 split</li>
+            <li>An emergency-fund plan calculated in AED</li>
+            <li>Realistic local investment channels with risk indicators</li>
+            <li>Practical monthly steps with estimated saving power</li>
+            <li>No sign-up, and no storage of your financial data</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+      <div class="container">
+        <span class="eyebrow reveal">The team</span>
+        <h2 class="section-title reveal">Who stands behind Ruya</h2>
+        <div class="grid-3" style="margin-top:36px;grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px;margin-inline:auto">
+          <div class="panel member reveal from-down" data-spotlight>
+            <div class="avatar"><img src="assets/img/harith.png" alt="Harith"></div>
+            <h3>Harith - dev</h3>
+            <p>eua</p>
+          </div>
+          <div class="panel member reveal from-down" style="--d:.12s" data-spotlight>
+            <div class="avatar"><img src="assets/img/mohammed.jpg" alt="Mohammed"></div>
+            <h3>mohmmad - dev</h3>
+            <p>iraqi</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-sec">
+      <div class="container">
+        <span class="eyebrow reveal">From the Emirates</span>
+        <h2 class="section-title reveal">Project gallery</h2>
+        <div class="gallery">
+          <figure class="reveal zoom" data-spotlight><img src="assets/img/dubai-lamer.jpg" alt="Dubai skyline"><figcaption>Dubai — the financial heartbeat of the country</figcaption></figure>
+          <figure class="reveal zoom" style="--d:.12s" data-spotlight><img src="assets/img/gallery-marina.jpg" alt="Dubai Marina skyline"><figcaption>Dubai Marina — towers along the water</figcaption></figure>
+          <figure class="reveal zoom" style="--d:.24s" data-spotlight><img src="assets/img/mosque.jpg" alt="Sheikh Zayed Grand Mosque"><figcaption>Abu Dhabi — Sheikh Zayed Grand Mosque</figcaption></figure>
+          <figure class="reveal zoom" style="--d:.36s" data-spotlight><img src="assets/img/gallery-burj-view.jpg" alt="Night view from Burj Khalifa"><figcaption>From the top of Burj Khalifa</figcaption></figure>
+          <figure class="reveal zoom" style="--d:.48s" data-spotlight><img src="assets/img/gallery-abudhabi.jpg" alt="Abu Dhabi corniche skyline"><figcaption>Abu Dhabi — the Corniche skyline</figcaption></figure>
+          <figure class="reveal zoom" style="--d:.6s" data-spotlight><img src="assets/img/difc.jpg" alt="Dubai International Financial Centre"><figcaption>DIFC — the region's financial hub</figcaption></figure>
+        </div>
+        <p class="credit-line">Photos from Wikimedia Commons, used for educational purposes with attribution to their original sources.</p>
+      </div>
+    </section>
+
+    <section class="learn-cta">
+      <div class="container">
+        <div class="cta-band reveal zoom" data-spotlight>
+          <div><h3>Try Ruya yourself</h3><p>Enter your numbers and get your plan in seconds.</p></div>
+          <a class="btn btn-white" href="analyze.html">Start the analysis →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <svg class="footer-chart" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path class="fc-area" d="M0 64V46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14V64z"/><path class="fc-line" d="M0 46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14"/></svg>
+    <div class="fireflies" aria-hidden="true">
+      <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+    </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="color:#fff"><span class="brand-mark"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle class="ring" cx="16" cy="16" r="14.2"/><circle cx="16" cy="16" r="11.5"/><path d="m10.5 20.5 4.5-4.5 3 3 4.5-6"/><path d="M19 13h3.5v3.5"/></svg></span> Ruya</div>
+          <p style="margin-top:14px;color:#a9cfc0;font-size:.92rem">An AI-powered financial literacy platform serving citizens and residents of the UAE.</p>
+        </div>
+        <div><h4>Links</h4><a href="index.html">Home</a><a href="analyze.html">Analyze</a><a href="learn.html">Learn</a></div>
+        <div><h4>About the project</h4><a href="about.html#team">The team</a><a href="learn.html">Financial literacy</a></div>
+      </div>
+      <div class="disclaimer"><span>© <span id="year">2026</span> Ruya — an educational project. Not licensed financial advice.</span></div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <button class="coin-buddy" aria-label="Ruya coin buddy — click for a money tip" title="Click me for a money tip!">
+    <svg viewBox="0 0 80 80" aria-hidden="true">
+      <defs>
+        <radialGradient id="gBuddy" cx=".35" cy=".3" r=".9">
+          <stop offset="0" stop-color="#ffe9a8"/>
+          <stop offset=".55" stop-color="#f5c451"/>
+          <stop offset="1" stop-color="#c9a227"/>
+        </radialGradient>
+      </defs>
+      <circle cx="40" cy="40" r="37" fill="url(#gBuddy)"/>
+      <circle cx="40" cy="40" r="29" fill="none" stroke="rgba(122,92,10,.35)" stroke-width="2" stroke-dasharray="4 5"/>
+      <g class="eyes"><ellipse class="eye l" cx="32" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/><ellipse class="eye" cx="48" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/></g>
+      <path d="M31 48 Q40 57 49 48" fill="none" stroke="#5d4403" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="26.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <circle cx="53.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <ellipse cx="29" cy="23" rx="9" ry="5" fill="rgba(255,255,255,.55)" transform="rotate(-24 29 23)"/>
+    </svg>
+  </button>
+
+  <div class="toast" id="toast"></div>
+  <script src="assets/js/main.js?v=4"></script>
+  <script src="assets/js/motion.js?v=4"></script>
+</body>
+</html>

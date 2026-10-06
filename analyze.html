@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Analyze your financial situation and get a personal saving and investing plan built for your life in the UAE.">
+  <title>Financial Analysis | Ruya</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/motion.css?v=5">
+  <link rel="stylesheet" href="assets/css/analyze.css?v=5">
+</head>
+<body>
+  <div id="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand"><span class="brand-mark"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle class="ring" cx="16" cy="16" r="14.2"/><circle cx="16" cy="16" r="11.5"/><path d="m10.5 20.5 4.5-4.5 3 3 4.5-6"/><path d="M19 13h3.5v3.5"/></svg></span> Ruya</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="analyze.html" class="active">Analyze</a>
+        <a href="learn.html">Learn</a>
+        <a href="about.html">About</a>
+        <span class="credit-chip" id="creditChip">Daily credits —</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="app-head">
+      <img class="head-bg" src="assets/img/dubai-skyscrapers.jpg" alt="" aria-hidden="true" data-parallax="0.1">
+      <div class="head-fade" aria-hidden="true"></div>
+      <svg class="head-constellation" viewBox="0 0 600 240" aria-hidden="true">
+        <g class="const-lines">
+          <path d="M60 190 L150 120 L245 160 L330 80 L420 130 L520 60"/>
+        </g>
+        <g class="const-nodes">
+          <circle cx="60" cy="190" r="4"/><circle cx="150" cy="120" r="5"/><circle cx="245" cy="160" r="4"/>
+          <circle cx="330" cy="80" r="6"/><circle cx="420" cy="130" r="4"/><circle cx="520" cy="60" r="5"/>
+        </g>
+        <g class="const-pulse">
+          <circle r="3.5">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M60 190 L150 120 L245 160 L330 80 L420 130 L520 60"/>
+          </circle>
+        </g>
+      </svg>
+      <div class="fireflies" aria-hidden="true">
+        <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+        <span class="ff"></span><span class="ff"></span>
+      </div>
+      <div class="container head-inner">
+        <span class="eyebrow reveal from-down">Financial analysis</span>
+        <h1 class="section-title reveal">Tell us your situation — we'll tell you your plan</h1>
+        <p class="section-sub reveal">
+          Everything stays in your browser, and we store no numbers once the analysis ends.
+          Cost: <b id="costLabel">5</b> credits of your daily limit
+          (<b data-credits-remaining>—</b> remaining).
+        </p>
+      </div>
+    </section>
+
+    <section class="app-body">
+      <div class="container app-grid">
+        <!-- Form -->
+        <form class="panel form-panel reveal from-right" id="planForm" novalidate data-spotlight>
+          <h2>Your financial details</h2>
+
+          <div class="field">
+            <label for="income">Monthly income (AED) <i>*</i></label>
+            <input type="number" id="income" min="500" max="1000000" step="100" placeholder="e.g. 15000" required>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="fixedExpenses">Fixed commitments (rent / loans)</label>
+              <input type="number" id="fixedExpenses" min="0" max="1000000" step="100" placeholder="e.g. 5000">
+            </div>
+            <div class="field">
+              <label for="otherExpenses">Other expenses</label>
+              <input type="number" id="otherExpenses" min="0" max="1000000" step="100" placeholder="e.g. 2500">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="currentSavings">Current savings</label>
+              <input type="number" id="currentSavings" min="0" max="100000000" step="100" placeholder="e.g. 30000">
+            </div>
+            <div class="field">
+              <label for="dependents">Dependents</label>
+              <input type="number" id="dependents" min="0" max="20" step="1" value="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="goal">Your financial goal</label>
+            <select id="goal">
+              <option value="home">Buy a home</option>
+              <option value="stocks">Invest in local shares</option>
+              <option value="marriage">Save for a wedding</option>
+              <option value="emergency" selected>Build an emergency fund</option>
+              <option value="education">Education</option>
+              <option value="retire">Retirement</option>
+              <option value="debt">Pay off debt</option>
+              <option value="business">Start a business</option>
+            </select>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="goalAmount">Goal amount (AED)</label>
+              <input type="number" id="goalAmount" min="0" max="1000000000" step="1000" placeholder="e.g. 400000">
+            </div>
+            <div class="field">
+              <label for="horizon">Time horizon</label>
+              <select id="horizon">
+                <option value="1">1 year</option>
+                <option value="3" selected>3 years</option>
+                <option value="5">5 years</option>
+                <option value="10">10+ years</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Risk tolerance</span>
+            <div class="seg" role="radiogroup" aria-label="Risk tolerance">
+              <label><input type="radio" name="risk" value="conservative"><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l7 2.4v5.4c0 4.2-2.9 7.9-7 9.2-4.1-1.3-7-5-7-9.2V5.9l7-2.4z"/></svg>Conservative</span></label>
+              <label><input type="radio" name="risk" value="balanced" checked><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.5h17"/><circle cx="7.5" cy="8.8" r="2.6"/><circle cx="16.5" cy="16.2" r="2.6"/></svg>Balanced</span></label>
+              <label><input type="radio" name="risk" value="aggressive"><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l6-6 3.5 3.5L20 7"/><path d="M14.5 7H20v5.5"/></svg>Bold</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="note">Extra note (optional)</label>
+            <textarea id="note" maxlength="200" rows="2" placeholder="e.g. I plan to buy an apartment within two years..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary full" id="submitBtn">Create my money plan →</button>
+          <p class="hint">Costs 5 credits from your daily limit. No sign-up, and your data is never stored.</p>
+        </form>
+
+        <!-- Result -->
+        <div class="result-col">
+          <div class="panel empty-state reveal from-left" id="emptyState">
+            <div class="big-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5 9.5 11.5l3.8 3.8L20.5 7.5"/><path d="M15 7.5h5.5V13"/></svg></div>
+            <h3>Your plan will appear here</h3>
+            <p>Fill the form and hit "Create my plan" — you'll get ready dashboards in seconds.</p>
+          </div>
+
+          <div class="loading-state panel" id="loadingState" hidden>
+            <svg class="spinner-ico" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="sp-track" cx="32" cy="32" r="26"/>
+              <circle class="sp-arc" cx="32" cy="32" r="26"/>
+              <circle class="sp-dot" cx="32" cy="6" r="4.5"/>
+            </svg>
+            <p id="loadingText">Analyzing your financial situation...</p>
+            <div class="skel skel-a"></div>
+            <div class="skel skel-b"></div>
+            <div class="skel skel-c"></div>
+          </div>
+
+          <div id="result" hidden>
+            <div class="panel plan-summary">
+              <div class="plan-head">
+                <span class="mode-badge" id="modeBadge" hidden>Local demo mode</span>
+                <span class="plan-date" id="planDate"></span>
+              </div>
+              <h2 id="pHeadline">Your money plan</h2>
+              <p id="pSummary"></p>
+              <div class="sources" id="pSources" hidden>
+                <span>Researched on the web:</span>
+                <div class="src-list" id="pSourceList"></div>
+              </div>
+            </div>
+
+            <div class="panel rationale-panel" id="pRationalePanel" hidden>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 18 5-5 4 3 7-8"/><circle cx="4" cy="18" r="1.6"/><circle cx="20" cy="8" r="1.6"/></svg>Analysis path</h3>
+              <p class="sub">The reasoning steps behind your plan — follow them and learn from the process.</p>
+              <ol class="rationale" id="pRationale"></ol>
+            </div>
+
+            <div class="panel" data-spotlight>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><rect x="5" y="11.5" width="3.5" height="5.5" rx="1"/><rect x="10.2" y="7.5" width="3.5" height="9.5" rx="1"/><rect x="15.4" y="13" width="3.5" height="4" rx="1"/></svg>Monthly budget split</h3>
+              <div class="bars" id="pBars">
+                <div class="bar-row"><span class="bar-lbl">Essentials & commitments</span><div class="track"><i id="barNeeds"></i></div><b id="valNeeds">—</b></div>
+                <div class="bar-row"><span class="bar-lbl">Lifestyle choices</span><div class="track"><i id="barWants"></i></div><b id="valWants">—</b></div>
+                <div class="bar-row"><span class="bar-lbl">Saving & investing</span><div class="track"><i id="barSavings"></i></div><b id="valSavings">—</b></div>
+              </div>
+              <div class="split-note" id="splitNote"></div>
+            </div>
+
+            <div class="panel" data-spotlight>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5V6.5M12 17.5v-2M15.5 12h2M8.5 12h-2"/></svg>Financial safety</h3>
+              <div class="mini-grid" id="pRunway"></div>
+            </div>
+
+            <div class="panel" data-spotlight>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l7.4 4.3"/></svg>Suggested investment channels</h3>
+              <div class="chan-grid" id="pChannels"></div>
+            </div>
+
+            <div class="panel" data-spotlight>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5"/><path d="m4 6 1.2 1.2L7.5 4.9M4 12l1.2 1.2 2.3-2.3M4 18l1.2 1.2 2.3-2.3"/></svg>Practical steps this month</h3>
+              <ul class="actions" id="pActions"></ul>
+            </div>
+
+            <div class="panel risks" data-spotlight>
+              <h3 class="with-ico"><svg class="ico h-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 21 19.5H3L12 4.5z"/><path d="M12 10v4.5M12 17.4h.01"/></svg>Alerts & protection</h3>
+              <ul class="risk-list" id="pRisks"></ul>
+            </div>
+
+            <p class="disclaimer" id="pDisclaimer"></p>
+
+            <div class="result-actions">
+              <button class="btn btn-ghost" id="printBtn">Print the plan</button>
+              <button class="btn btn-primary" id="againBtn">New analysis</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <svg class="footer-chart" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path class="fc-area" d="M0 64V46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14V64z"/><path class="fc-line" d="M0 46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14"/></svg>
+    <div class="fireflies" aria-hidden="true">
+      <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+    </div>
+    <div class="container">
+      <div class="disclaimer" style="border:0;margin:0;padding:0">
+        <span>© <span id="year">2026</span> Ruya — an educational project. The content is not licensed financial advice.</span>
+        <span>Numbers are estimates based on your inputs.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <button class="coin-buddy" aria-label="Ruya coin buddy — click for a money tip" title="Click me for a money tip!">
+    <svg viewBox="0 0 80 80" aria-hidden="true">
+      <defs>
+        <radialGradient id="gBuddy" cx=".35" cy=".3" r=".9">
+          <stop offset="0" stop-color="#ffe9a8"/>
+          <stop offset=".55" stop-color="#f5c451"/>
+          <stop offset="1" stop-color="#c9a227"/>
+        </radialGradient>
+      </defs>
+      <circle cx="40" cy="40" r="37" fill="url(#gBuddy)"/>
+      <circle cx="40" cy="40" r="29" fill="none" stroke="rgba(122,92,10,.35)" stroke-width="2" stroke-dasharray="4 5"/>
+      <g class="eyes"><ellipse class="eye l" cx="32" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/><ellipse class="eye" cx="48" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/></g>
+      <path d="M31 48 Q40 57 49 48" fill="none" stroke="#5d4403" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="26.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <circle cx="53.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <ellipse cx="29" cy="23" rx="9" ry="5" fill="rgba(255,255,255,.55)" transform="rotate(-24 29 23)"/>
+    </svg>
+  </button>
+
+  <div class="toast" id="toast"></div>
+  <script src="assets/js/main.js?v=4"></script>
+  <script src="assets/js/motion.js?v=4"></script>
+  <script src="assets/js/analyze.js?v=4"></script>
+</body>
+</html>

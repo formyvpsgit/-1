@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ruya — the AI money planning and investment advisor built for people in the UAE.">
+  <title>Ruya | Your Smart Money Advisor</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=5">
+  <link rel="stylesheet" href="assets/css/motion.css?v=5">
+  <link rel="stylesheet" href="assets/css/index.css?v=5">
+</head>
+<body>
+  <div id="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand"><span class="brand-mark"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle class="ring" cx="16" cy="16" r="14.2"/><circle cx="16" cy="16" r="11.5"/><path d="m10.5 20.5 4.5-4.5 3 3 4.5-6"/><path d="M19 13h3.5v3.5"/></svg></span> Ruya</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="learn.html">Learn</a>
+        <a href="about.html">About</a>
+        <span class="credit-chip" id="creditChip">Daily credits —</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg" data-parallax="0.18">
+        <img src="assets/img/hero-dubai-night.jpg" alt="Dubai skyline at night">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="hero-deco" aria-hidden="true">
+        <svg class="deco-ico d1" viewBox="0 0 64 64"><circle cx="32" cy="32" r="21"/><path d="m23 37.5 7-7 4.5 4.5L41 27"/><path d="M35.5 27H41v5.5"/></svg>
+        <svg class="deco-ico d2" viewBox="0 0 64 64"><rect x="7" y="17" width="50" height="30" rx="5"/><circle cx="32" cy="32" r="7"/><path d="M14 24h4M46 40h4"/></svg>
+        <svg class="deco-ico d3" viewBox="0 0 64 64"><path d="M8 56h48"/><rect x="14" y="34" width="9" height="18" rx="2"/><rect x="28" y="24" width="9" height="28" rx="2"/><rect x="42" y="14" width="9" height="38" rx="2"/><path d="m12 24 14-9 10 5 16-11"/><path d="M44 9h8v8"/></svg>
+        <svg class="deco-ico d4" viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="11.5"/><circle cx="32" cy="32" r="3.5"/></svg>
+      </div>
+      <div class="fireflies" aria-hidden="true">
+        <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+        <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="hero-badge reveal from-down"><span class="live-dot"></span>AI-powered • UAE economy • Full privacy</span>
+            <h1 class="reveal" style="--d:.1s">Plan your money<br>with AI. <em>Start today.</em></h1>
+            <p class="reveal" style="--d:.22s">
+              Ruya is your smart money advisor: enter your income, commitments and goal —
+              get a tailored saving and investing plan in seconds, built around the UAE market. No expensive advisor required.
+            </p>
+            <div class="hero-actions reveal" style="--d:.34s">
+              <a class="btn btn-white" href="analyze.html">Start your free analysis →</a>
+              <a class="btn btn-outline" href="learn.html">Meet Ruya</a>
+            </div>
+            <div class="hero-pills reveal flip" style="--d:.46s">
+              <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Your data is never stored</span>
+              <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2.5 4.8 13.4h6.1L10 21.5l8.2-11.1h-6.1L13 2.5z"/></svg>A plan in seconds</span>
+              <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M6 21V9.2l5-3.1V21M14.5 21V12l4.5-2.4V21"/></svg>Built for the UAE market</span>
+            </div>
+          </div>
+
+          <!-- New: animated live-plan dashboard (pure SVG + CSS) -->
+          <div class="hero-visual reveal zoom" style="--d:.55s" data-tilt aria-hidden="true">
+            <span class="orb orb-a"></span>
+            <span class="orb orb-b"></span>
+            <div class="glass chip chip-1"><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4 10-10"/></svg>Emergency fund — 6 months</div>
+            <div class="glass chip chip-2"><b>+ AED 2,150</b><span>saved / month</span></div>
+            <div class="glass chip chip-3"><span class="live-dot"></span>50/30/20 auto-split</div>
+
+            <svg class="dash" viewBox="0 0 560 460" role="img" aria-label="Animated preview of a Ruya money plan">
+              <defs>
+                <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#66e8b1"/><stop offset="1" stop-color="#f5c451"/>
+                </linearGradient>
+                <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0" stop-color="rgba(102,232,177,.18)"/><stop offset="1" stop-color="#66e8b1"/>
+                </linearGradient>
+                <linearGradient id="gGlass" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="rgba(255,255,255,.10)"/><stop offset="1" stop-color="rgba(255,255,255,.03)"/>
+                </linearGradient>
+                <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="rgba(102,232,177,.35)"/><stop offset="1" stop-color="rgba(102,232,177,0)"/>
+                </linearGradient>
+              </defs>
+
+              <!-- glass card -->
+              <rect class="dash-card" x="36" y="26" width="488" height="330" rx="26" fill="url(#gGlass)" stroke="rgba(159,240,205,.28)"/>
+              <circle class="dash-live" cx="72" cy="66" r="5"/>
+              <text class="dash-label" x="88" y="70">LIVE PLAN PREVIEW</text>
+              <text class="dash-balance" x="66" y="128" data-tick="18,640|21,240|24,310|27,080">AED 18,640</text>
+              <text class="dash-sub" x="66" y="152">saved + invested every month</text>
+
+              <!-- savings-rate donut -->
+              <g class="dash-donut" transform="translate(438,118)">
+                <circle class="donut-track" r="46"/>
+                <circle class="donut-fill" r="46"/>
+                <text class="donut-val" y="7">72%</text>
+                <text class="donut-cap" y="26">savings rate</text>
+              </g>
+
+              <!-- monthly bars -->
+              <g class="dash-bars">
+                <rect class="dbar" x="66"  y="218" width="30" height="104" rx="8"/>
+                <rect class="dbar" x="128" y="196" width="30" height="126" rx="8"/>
+                <rect class="dbar" x="190" y="236" width="30" height="86"  rx="8"/>
+                <rect class="dbar" x="252" y="176" width="30" height="146" rx="8"/>
+                <rect class="dbar" x="314" y="150" width="30" height="172" rx="8"/>
+              </g>
+              <line class="dash-axis" x1="56" y1="326" x2="368" y2="326"/>
+
+              <!-- growth curve -->
+              <path class="dash-area" d="M396 300 C420 250 430 236 452 210 C474 184 486 172 508 148 L508 326 L396 326 Z"/>
+              <path class="dash-line" d="M396 300 C420 250 430 236 452 210 C474 184 486 172 508 148"/>
+              <circle class="dash-dot" r="4.5">
+                <animateMotion dur="5.5s" begin="1.2s" repeatCount="indefinite" path="M396 300 C420 250 430 236 452 210 C474 184 486 172 508 148"/>
+              </circle>
+              <circle class="dash-halo" r="10">
+                <animateMotion dur="5.5s" begin="1.2s" repeatCount="indefinite" path="M396 300 C420 250 430 236 452 210 C474 184 486 172 508 148"/>
+              </circle>
+
+              <!-- base ticker -->
+              <g class="dash-base">
+                <rect x="36" y="376" width="230" height="52" rx="14"/>
+                <text class="dash-b1" x="58" y="398">Goal</text>
+                <text class="dash-b2" x="58" y="418">Apartment — 2 yrs</text>
+                <rect x="294" y="376" width="230" height="52" rx="14"/>
+                <text class="dash-b1" x="316" y="398">On track</text>
+                <text class="dash-b2" x="316" y="418">22 of 24 months</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <svg class="hero-spark" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+        <path class="spark-area" d="M0 104l120-22 120 16 120-34 120 24 120-38 120 20 120-44 120 28 120-32 120 22 120-40 120 26L1440 130L0 130z"/>
+        <path class="spark-line" d="M0 104l120-22 120 16 120-34 120 24 120-38 120 20 120-44 120 28 120-32 120 22 120-40 120 26"/>
+        <circle class="spark-halo" r="9"><animateMotion dur="7s" begin="0.5s" repeatCount="indefinite" path="M0 104l120-22 120 16 120-34 120 24 120-38 120 20 120-44 120 28 120-32 120 22 120-40 120 26"/></circle>
+        <circle class="spark-dot" r="4.5"><animateMotion dur="7s" begin="0.5s" repeatCount="indefinite" path="M0 104l120-22 120 16 120-34 120 24 120-38 120 20 120-44 120 28 120-32 120 22 120-40 120 26"/></circle>
+      </svg>
+    </section>
+
+    <!-- Terms ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>50/30/20 rule</span><b>•</b><span>Emergency fund</span><b>•</b><span>Portfolio diversification</span><b>•</b><span>Cash liquidity</span><b>•</b><span>SMART goals</span><b>•</b><span>UAE market</span><b>•</b><span>Full privacy</span><b>•</b><span>Instant analysis</span><b>•</b>
+        <span>50/30/20 rule</span><b>•</b><span>Emergency fund</span><b>•</b><span>Portfolio diversification</span><b>•</b><span>Cash liquidity</span><b>•</b><span>SMART goals</span><b>•</b><span>UAE market</span><b>•</b><span>Full privacy</span><b>•</b><span>Instant analysis</span><b>•</b>
+      </div>
+    </div>
+
+    <!-- Numbers -->
+    <section class="stats">
+      <div class="wave-sep" aria-hidden="true" style="--wave-fill: var(--g-50)">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+          <path class="w-back" d="M-40,45 C260,90 520,10 760,50 C1000,90 1240,25 1480,60 L1480,90 L-40,90 Z"/>
+          <path class="w-front" d="M-40,60 C240,20 480,95 720,55 C960,15 1200,85 1480,45 L1480,90 L-40,90 Z"/>
+        </svg>
+      </div>
+      <div class="container stats-grid">
+        <div class="stat panel reveal from-down" data-spotlight>
+          <div class="stat-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2"/><rect x="9" y="2.5" width="6" height="4" rx="1.2"/><path d="m9 13.5 2.2 2.2 4.3-4.6"/></svg></div>
+          <b data-count="200" data-suffix="+">0</b>
+          <span>Analyses per user, daily</span>
+        </div>
+        <div class="stat panel reveal from-down" style="--d:.12s" data-spotlight>
+          <div class="stat-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+          <b data-count="8">0</b>
+          <span>Financial goals supported</span>
+        </div>
+        <div class="stat panel reveal from-down" style="--d:.24s" data-spotlight>
+          <div class="stat-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 8.5 4.3L12 12 3.5 7.8 12 3.5z"/><path d="m3.5 12.2 8.5 4.3 8.5-4.3"/><path d="m3.5 16.4 8.5 4.3 8.5-4.3"/></svg></div>
+          <b data-count="5">0</b>
+          <span>Local investment channels</span>
+        </div>
+        <div class="stat panel reveal from-down" style="--d:.36s" data-spotlight>
+          <div class="stat-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.6"/><circle cx="16.5" cy="16.5" r="2.6"/></svg></div>
+          <b data-count="50" data-suffix="%">0</b>
+          <span>Savings rule applied</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="container">
+        <span class="eyebrow reveal">Why Ruya?</span>
+        <h2 class="section-title reveal">Three dashboards that turn your salary into a clear plan</h2>
+        <p class="section-sub reveal">Every user gets a personal analysis, generated live by AI around their exact situation.</p>
+        <div class="grid-3" style="margin-top:42px">
+          <div class="panel reveal from-right" data-spotlight>
+            <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><rect x="5" y="11.5" width="3.5" height="5.5" rx="1"/><rect x="10.2" y="7.5" width="3.5" height="9.5" rx="1"/><rect x="15.4" y="13" width="3.5" height="4" rx="1"/></svg></div>
+            <h3>Live analysis</h3>
+            <p>You enter just your income and commitments — you get a 50/30/20 split with real AED numbers computed for your case.</p>
+          </div>
+          <div class="panel reveal" style="--d:.15s" data-spotlight>
+            <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.8 12 4.5l8.5 5.3M5.5 10.5V18m4-7.5V18m5-7.5V18m4-7.5V18M3.5 20.5h17"/></svg></div>
+            <h3>Local channels</h3>
+            <p>Suggestions grounded in the UAE market: investment funds, national sukuk, and locally listed shares.</p>
+          </div>
+          <div class="panel reveal from-left" style="--d:.3s" data-spotlight>
+            <div class="icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l7 2.4v5.4c0 4.2-2.9 7.9-7 9.2-4.1-1.3-7-5-7-9.2V5.9l7-2.4z"/><path d="m9 12 2.2 2.2 4.3-4.5"/></svg></div>
+            <h3>Privacy first</h3>
+            <p>No accounts, no databases. The AI key lives on the server only, and your inputs are never stored after the reply.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how">
+      <div class="container">
+        <span class="eyebrow reveal">How it works</span>
+        <h2 class="section-title reveal">Just three steps</h2>
+        <div class="growth" aria-hidden="true">
+          <svg class="sprout" viewBox="0 0 120 130" data-animate>
+            <path class="st" d="M60 96 C60 74 63 58 60 38"/>
+            <path class="leaf" d="M60 64 C42 60 32 46 34 32 C50 34 58 46 60 60 Z"/>
+            <path class="leaf l2" d="M60 48 C76 44 86 32 84 18 C70 20 62 32 60 44 Z"/>
+            <ellipse class="coin-el" cx="50" cy="106" rx="15" ry="5.5"/>
+            <ellipse class="coin-el" cx="50" cy="97" rx="15" ry="5.5"/>
+            <ellipse class="coin-el" cx="72" cy="108" rx="15" ry="5.5"/>
+          </svg>
+          <div class="coin3d"><div class="coin3d-inner"><div class="coin3d-face">AED</div><div class="coin3d-face back">﷼</div></div></div>
+        </div>
+        <div class="steps">
+          <div class="step reveal from-right" data-spotlight>
+            <span class="num">1</span>
+            <h3>Enter your numbers</h3>
+            <p>Monthly income, commitments, current savings, and the goal you want to reach.</p>
+          </div>
+          <div class="step-line"></div>
+          <div class="step reveal" style="--d:.2s" data-spotlight>
+            <span class="num">2</span>
+            <h3>AI reviews your case</h3>
+            <p>The model analyzes your data in the context of the UAE economy and drafts a personal money plan.</p>
+          </div>
+          <div class="step-line"></div>
+          <div class="step reveal from-left" style="--d:.4s" data-spotlight>
+            <span class="num">3</span>
+            <h3>Get your plan</h3>
+            <p>Ready dashboards: budget split, financial safety, investment channels, and practical next steps.</p>
+          </div>
+        </div>
+        <div class="cta-band reveal zoom" data-spotlight>
+          <div>
+            <h3>Ready to see your money plan?</h3>
+            <p>Under one minute — and no sign-up.</p>
+          </div>
+          <a class="btn btn-white" href="analyze.html">Start now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Literacy call-out -->
+    <section class="edu">
+      <div class="wave-sep" aria-hidden="true" style="--wave-fill: #ffffff">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+          <path class="w-back" d="M-40,50 C300,15 560,88 820,48 C1080,10 1260,80 1480,42 L1480,90 L-40,90 Z"/>
+          <path class="w-front" d="M-40,65 C220,25 500,92 760,58 C1020,24 1220,88 1480,52 L1480,90 L-40,90 Z"/>
+        </svg>
+      </div>
+      <div class="container edu-grid">
+        <div class="edu-img reveal from-right">
+          <img src="assets/img/mosque-night.jpg" alt="Sheikh Zayed Grand Mosque in Abu Dhabi at night">
+        </div>
+        <div>
+          <span class="eyebrow reveal from-left">Financial literacy</span>
+          <h2 class="section-title reveal from-left">Awareness is the first step to stability</h2>
+          <p class="section-sub reveal from-left">
+            From the 50/30/20 rule to the difference between a bank deposit and an investment fund —
+            we collected short, practical guides written in plain English.
+          </p>
+          <a class="btn btn-ghost reveal from-left" style="margin-top:24px" href="learn.html">Explore the guides →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <svg class="footer-chart" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path class="fc-area" d="M0 64V46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14V64z"/><path class="fc-line" d="M0 46l120-10 120 14 120-22 120 10 120-18 120 12 120-24 120 16 120-12 120 20 120-8 120 14"/></svg>
+    <div class="fireflies" aria-hidden="true">
+      <span class="ff"></span><span class="ff"></span><span class="ff"></span><span class="ff"></span>
+      <span class="ff"></span><span class="ff"></span>
+    </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="color:#fff"><span class="brand-mark"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><circle class="ring" cx="16" cy="16" r="14.2"/><circle cx="16" cy="16" r="11.5"/><path d="m10.5 20.5 4.5-4.5 3 3 4.5-6"/><path d="M19 13h3.5v3.5"/></svg></span> Ruya</div>
+          <p style="margin-top:14px;color:#a9cfc0;font-size:.92rem">
+            An AI-powered financial literacy platform designed for citizens and residents of the United Arab Emirates.
+          </p>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <a href="index.html">Home</a>
+          <a href="analyze.html">Analyze</a>
+          <a href="learn.html">Learn</a>
+          <a href="about.html">About the project</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="about.html#team">The team</a>
+          <a href="analyze.html">Start your analysis</a>
+        </div>
+
+      </div>
+      <div class="disclaimer">
+        <span>© <span id="year">2026</span> Ruya — a shared educational hackathon project. The content is not licensed financial advice.</span>
+        <span>Photos: Wikimedia Commons</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <button class="coin-buddy" aria-label="Ruya coin buddy — click for a money tip" title="Click me for a money tip!">
+    <svg viewBox="0 0 80 80" aria-hidden="true">
+      <defs>
+        <radialGradient id="gBuddy" cx=".35" cy=".3" r=".9">
+          <stop offset="0" stop-color="#ffe9a8"/>
+          <stop offset=".55" stop-color="#f5c451"/>
+          <stop offset="1" stop-color="#c9a227"/>
+        </radialGradient>
+      </defs>
+      <circle cx="40" cy="40" r="37" fill="url(#gBuddy)"/>
+      <circle cx="40" cy="40" r="29" fill="none" stroke="rgba(122,92,10,.35)" stroke-width="2" stroke-dasharray="4 5"/>
+      <g class="eyes"><ellipse class="eye l" cx="32" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/><ellipse class="eye" cx="48" cy="36" rx="3.1" ry="4.6" fill="#5d4403"/></g>
+      <path d="M31 48 Q40 57 49 48" fill="none" stroke="#5d4403" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="26.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <circle cx="53.5" cy="45" r="3" fill="rgba(214,120,60,.4)"/>
+      <ellipse cx="29" cy="23" rx="9" ry="5" fill="rgba(255,255,255,.55)" transform="rotate(-24 29 23)"/>
+    </svg>
+  </button>
+
+  <div class="toast" id="toast"></div>
+  <script src="assets/js/main.js?v=4"></script>
+  <script src="assets/js/motion.js?v=4"></script>
+</body>
+</html>

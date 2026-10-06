@@ -1,0 +1,375 @@
+/* ============================================================
+   MOTION SYSTEM — fast, smooth, GPU-friendly (transform/opacity)
+   Shared across all pages. Respects prefers-reduced-motion.
+   ============================================================ */
+
+:root {
+  --mint: #66e8b1;
+  --mint-soft: rgba(102, 232, 177, .35);
+  --gold: #f5c451;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ===== Aurora orbs — soft drifting glow blobs ===== */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+.orb-a {
+  width: 340px; height: 340px;
+  background: radial-gradient(circle at 30% 30%, rgba(10, 179, 108, .55), transparent 65%);
+  top: -80px; left: -60px;
+  animation: orbDrift 14s ease-in-out infinite alternate;
+}
+.orb-b {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle at 60% 40%, rgba(245, 196, 81, .28), transparent 65%);
+  bottom: -70px; right: -50px;
+  animation: orbDrift 18s ease-in-out infinite alternate-reverse;
+}
+@keyframes orbDrift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(46px, 30px, 0) scale(1.14); }
+  100% { transform: translate3d(-30px, 46px, 0) scale(.94); }
+}
+
+/* ===== Subtle grid overlay (hero / heads) — slowly drifting ===== */
+.hero-grid-lines, .head-grid-lines {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(159, 240, 205, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159, 240, 205, .07) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(75% 70% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(75% 70% at 50% 40%, #000 30%, transparent 100%);
+  animation: gridPan 26s linear infinite;
+  opacity: .55;
+}
+@keyframes gridPan { to { background-position: 46px 46px; } }
+
+/* ===== Spotlight cards — glow follows the cursor ===== */
+[data-spotlight] { position: relative; }
+[data-spotlight]::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(102, 232, 177, .14), transparent 65%);
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+[data-spotlight]:hover::after { opacity: 1; }
+
+/* Tilt wrapper */
+[data-tilt] { transform-style: preserve-3d; will-change: transform; }
+
+/* ===== Floating glass chips (hero) ===== */
+.glass {
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(159, 240, 205, .3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .35);
+}
+.chip {
+  position: absolute; z-index: 3;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 16px; border-radius: 16px;
+  color: #e7f6ef; font-size: .82rem; font-weight: 700;
+  white-space: nowrap;
+  animation: chipBob 6s ease-in-out infinite;
+  will-change: transform;
+}
+.chip .ico { width: 16px; height: 16px; color: var(--mint); }
+.chip b { color: var(--mint); font-size: .95rem; }
+.chip span { display: block; font-size: .68rem; font-weight: 600; opacity: .75; }
+.chip-1 { top: 4%; left: -4%; animation-delay: .2s; }
+.chip-2 { top: 40%; right: -5%; flex-direction: column; align-items: flex-start; gap: 2px; animation-delay: 1.6s; }
+.chip-3 { bottom: 2%; left: 6%; animation-delay: 3s; }
+@keyframes chipBob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-13px) rotate(1.5deg); }
+}
+@media (max-width: 1180px) { .chip-1 { left: 0; } .chip-2 { right: 0; } }
+
+/* ===== Hero dashboard SVG ===== */
+.hero-visual { position: relative; z-index: 2; perspective: 1100px; }
+.dash { width: 100%; height: auto; display: block; overflow: visible; }
+.dash text { font-family: var(--font, sans-serif); }
+
+.dash-card { stroke-width: 1.4; }
+.dash-label {
+  fill: rgba(159, 240, 205, .8);
+  font-size: 11px; font-weight: 700; letter-spacing: 2.4px;
+}
+.dash-live { fill: var(--mint); animation: livePulse 1.7s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.dash-balance { fill: #fff; font-size: 34px; font-weight: 800; letter-spacing: -.5px; }
+.dash-sub { fill: rgba(214, 236, 226, .65); font-size: 12px; font-weight: 600; }
+
+/* donut */
+.donut-track { fill: none; stroke: rgba(255, 255, 255, .1); stroke-width: 11; }
+.donut-fill {
+  fill: none; stroke: url(#gLine); stroke-width: 11; stroke-linecap: round;
+  stroke-dasharray: 289; stroke-dashoffset: 289;
+  transform-box: fill-box; transform-origin: center; rotate: -90deg;
+  animation: donutIn 1.5s .9s var(--ease-out) forwards;
+}
+@keyframes donutIn { to { stroke-dashoffset: 81; } }
+.donut-val { fill: #fff; font-size: 19px; font-weight: 800; text-anchor: middle; }
+.donut-cap { fill: rgba(214, 236, 226, .6); font-size: 8.6px; font-weight: 700; text-anchor: middle; letter-spacing: .6px; }
+
+/* bars */
+.dbar {
+  fill: url(#gBar);
+  transform-box: fill-box; transform-origin: bottom;
+  animation: barGrow .9s var(--ease-spring) both, barBreathe 4.2s 2.4s ease-in-out infinite;
+}
+.dbar:nth-child(1) { animation-delay: .55s, 2.4s; }
+.dbar:nth-child(2) { animation-delay: .7s, 2.7s; }
+.dbar:nth-child(3) { animation-delay: .85s, 3s; }
+.dbar:nth-child(4) { animation-delay: 1s, 3.3s; }
+.dbar:nth-child(5) { animation-delay: 1.15s, 3.6s; }
+@keyframes barGrow { from { transform: scaleY(0); } }
+@keyframes barBreathe { 50% { transform: scaleY(.94); } }
+.dash-axis { stroke: rgba(255, 255, 255, .16); stroke-width: 1.4; stroke-linecap: round; }
+
+/* growth curve */
+.dash-area { fill: url(#gArea); opacity: 0; animation: fadeIn 1s 1.7s forwards; }
+.dash-line {
+  fill: none; stroke: url(#gLine); stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 420; stroke-dashoffset: 420;
+  animation: dashDraw 1.4s 1.5s var(--ease-out) forwards;
+}
+@keyframes dashDraw { to { stroke-dashoffset: 0; } }
+@keyframes fadeIn { to { opacity: 1; } }
+.dash-dot { fill: var(--gold); }
+.dash-halo { fill: rgba(245, 196, 81, .22); }
+
+/* base cards */
+.dash-base rect { fill: rgba(255, 255, 255, .06); stroke: rgba(159, 240, 205, .2); }
+.dash-base text { font-size: 12px; font-weight: 700; }
+.dash-b1 { fill: rgba(159, 240, 205, .75); letter-spacing: 1.2px; font-size: 10px !important; }
+.dash-b2 { fill: #e7f6ef; }
+
+/* ===== Button ripple (span injected by motion.js) ===== */
+.btn .ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(255, 255, 255, .5);
+  transform: scale(0);
+  animation: ripple .65s ease-out forwards;
+  pointer-events: none;
+}
+.btn-primary .ripple, .btn-ghost .ripple { background: rgba(102, 232, 177, .45); }
+@keyframes ripple { to { transform: scale(3.4); opacity: 0; } }
+
+/* ===== Micro lift for panels that already have hover transforms ===== */
+[data-spotlight] { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out); }
+
+/* ============================================================
+   CHARACTER LAYER — organic, fresh, delightful
+   ============================================================ */
+
+/* ===== Organic wave dividers between sections ===== */
+.wave-sep {
+  position: relative; z-index: 2;
+  display: block; width: 100%; height: 74px;
+  margin-top: -73px; margin-bottom: -24px;
+  pointer-events: none;
+}
+.wave-sep svg { display: block; width: 100%; height: 100%; }
+.wave-sep .w-back, .wave-sep .w-front { fill: var(--wave-fill, var(--g-950)); }
+.wave-sep .w-back { opacity: .45; animation: waveSway 11s ease-in-out infinite alternate; }
+.wave-sep .w-front { animation: waveSway 14s ease-in-out infinite alternate-reverse; }
+@keyframes waveSway {
+  from { transform: translateX(-14px); }
+  to { transform: translateX(14px); }
+}
+
+/* ===== 3D spinning AED coin (pure CSS 3D) ===== */
+.coin3d {
+  width: 92px; height: 92px;
+  perspective: 520px;
+  animation: coinFloat 5s ease-in-out infinite;
+}
+.coin3d-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: coinSpin 7s linear infinite;
+}
+.coin3d-face {
+  position: absolute; inset: 0; border-radius: 50%;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 32% 28%, #ffe9a8, #f5c451 45%, #c9a227 85%);
+  box-shadow: inset 0 0 0 7px rgba(122, 92, 10, .28), inset 0 0 0 11px rgba(255, 240, 190, .5), 0 14px 34px rgba(0, 0, 0, .3);
+  color: #6b5004; font-family: var(--font-display, sans-serif);
+  font-weight: 800; font-size: 1.5rem; letter-spacing: 1px;
+}
+.coin3d-face::before {
+  content: ""; position: absolute; inset: 14px; border-radius: 50%;
+  border: 2px dashed rgba(122, 92, 10, .4);
+}
+.coin3d-face.back { transform: rotateY(180deg); font-size: 1.7rem; }
+@keyframes coinSpin { to { transform: rotateY(360deg); } }
+@keyframes coinFloat { 50% { transform: translateY(-12px); } }
+.coin3d.small { width: 64px; height: 64px; }
+.coin3d.small .coin3d-face { font-size: 1rem; }
+
+/* ===== Fireflies — ambient drifting glow dots ===== */
+.ff {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: #d8ffef;
+  box-shadow: 0 0 10px 3px rgba(102, 232, 177, .55);
+  opacity: 0; pointer-events: none;
+  animation: ffDrift 13s ease-in-out infinite, ffBlink 3.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.ff:nth-child(1) { left: 8%;  top: 30%; animation-delay: 0s, .2s; }
+.ff:nth-child(2) { left: 20%; top: 68%; animation-delay: -4s, 1.1s; }
+.ff:nth-child(3) { left: 37%; top: 22%; animation-delay: -8s, 2s; }
+.ff:nth-child(4) { left: 55%; top: 74%; animation-delay: -2s, .6s; }
+.ff:nth-child(5) { left: 72%; top: 34%; animation-delay: -6s, 1.7s; }
+.ff:nth-child(6) { left: 88%; top: 60%; animation-delay: -10s, 2.6s; }
+.ff:nth-child(7) { left: 46%; top: 50%; animation-delay: -12s, 1.4s; }
+.ff:nth-child(8) { left: 27%; top: 44%; animation-delay: -7s, 2.9s; }
+@keyframes ffDrift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(26px, -34px); }
+  50% { transform: translate(-18px, -62px); }
+  75% { transform: translate(-34px, -20px); }
+}
+@keyframes ffBlink { 0%, 100% { opacity: 0; } 50% { opacity: .9; } }
+.fireflies { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+
+/* growth corner (how section) */
+.how .growth {
+  position: absolute; right: 2%; top: -4px;
+  display: flex; align-items: flex-end; gap: 20px;
+  z-index: 0; opacity: .95; pointer-events: none;
+}
+.how .growth .coin3d { margin-bottom: 4px; }
+@media (max-width: 1150px) { .how .growth { display: none; } }
+
+/* ===== Sprout — growth drawn on scroll ===== */
+.sprout { width: 120px; height: 130px; overflow: visible; }
+.sprout .st { fill: none; stroke: #7de9bb; stroke-width: 4; stroke-linecap: round; }
+.sprout .leaf { fill: rgba(102, 232, 177, .25); stroke: #7de9bb; stroke-width: 3; }
+.sprout .coin-el { fill: none; stroke: var(--gold); stroke-width: 3; }
+.sprout .st, .sprout .leaf, .sprout .coin-el {
+  stroke-dasharray: 300; stroke-dashoffset: 300;
+  transition: stroke-dashoffset 1.2s var(--ease-out, ease);
+}
+.sprout.visible .st { stroke-dashoffset: 0; }
+.sprout.visible .leaf { stroke-dashoffset: 0; transition-delay: .5s; }
+.sprout.visible .coin-el { stroke-dashoffset: 0; transition-delay: 1s; }
+.sprout.visible .leaf { animation: leafSway 5s 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom left; }
+.sprout.visible .leaf.l2 { animation-delay: 2.4s; }
+@keyframes leafSway { 50% { transform: rotate(4deg); } }
+
+/* ===== Coin buddy — the clickable mascot ===== */
+.coin-buddy {
+  position: fixed; bottom: 24px; left: 24px; z-index: 95;
+  width: 74px; height: 74px; border-radius: 50%; border: 0; padding: 0;
+  cursor: pointer; background: transparent;
+  animation: buddyBob 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .3));
+  transition: transform .25s var(--ease-spring, ease);
+}
+.coin-buddy:hover { transform: scale(1.1) rotate(-6deg); }
+.coin-buddy:active { transform: scale(.92); }
+.coin-buddy svg { width: 100%; height: 100%; display: block; }
+.coin-buddy .eye { animation: buddyBlink 4.2s infinite; transform-box: fill-box; transform-origin: center; }
+.coin-buddy .eye.l { animation-delay: .08s; }
+@keyframes buddyBlink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.08); } }
+@keyframes buddyBob { 50% { transform: translateY(-9px) rotate(3deg); } }
+.coin-buddy.jump { animation: buddyJump .65s var(--ease-spring, ease); }
+@keyframes buddyJump {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-26px) scale(1.12) rotate(-8deg); }
+  70% { transform: translateY(0) scale(.94) rotate(5deg); }
+  100% { transform: translateY(0) scale(1); }
+}
+.coin-buddy .sparkle-p {
+  position: absolute; left: 50%; top: 50%; width: 9px; height: 9px;
+  border-radius: 2px; background: var(--gold);
+  box-shadow: 0 0 8px 2px rgba(245, 196, 81, .6);
+  pointer-events: none; z-index: -1;
+}
+
+/* ===== Button squish ===== */
+.btn:not(:disabled):active { transform: translateY(1px) scale(.98); }
+
+/* ===== Brand hello ===== */
+.brand:hover .brand-mark { animation: happyPop .55s var(--ease-spring, ease); }
+@keyframes happyPop { 35% { transform: scale(1.18) rotate(-9deg); } 70% { transform: scale(.94) rotate(5deg); } }
+
+/* ===== Coin riding the scroll-progress bar ===== */
+#progress::after {
+  content: ""; position: absolute; right: -8px; top: 50%;
+  width: 15px; height: 15px; margin-top: -7.5px; border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #ffe9a8, #f5c451 55%, #c9a227);
+  box-shadow: 0 0 12px rgba(245, 196, 81, .75), inset 0 0 0 2.5px rgba(122, 92, 10, .3);
+  animation: coinRide 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+#progress[style*="width: 0%"]::after { opacity: 0; }
+@keyframes coinRide { 50% { transform: translateY(-3px) scale(1.1); } }
+
+/* ===== Nav glider — a pill that glides between links ===== */
+.nav-glider {
+  position: absolute; top: 5px; bottom: 5px; left: 0;
+  border-radius: 999px; background: var(--g-100);
+  opacity: 0; pointer-events: none; z-index: 0;
+  transition: transform .38s var(--ease-out, ease), width .38s var(--ease-out, ease), opacity .3s ease;
+  will-change: transform, width;
+}
+.nav-links a, .nav-links .credit-chip { position: relative; z-index: 1; }
+
+/* ===== Headlines reveal word by word ===== */
+.section-title .word {
+  display: inline-block;
+  opacity: 0; transform: translateY(.55em) rotate(2deg);
+  transition: opacity .6s var(--ease-out, ease), transform .6s var(--ease-out, ease);
+  transition-delay: calc(var(--wd, 0) * 55ms);
+  will-change: transform, opacity;
+}
+.section-title.visible .word { opacity: 1; transform: none; }
+
+/* ===== Confetti burst (plan success) ===== */
+.confetti-p {
+  position: fixed; width: 9px; height: 13px; z-index: 300;
+  border-radius: 2px; pointer-events: none;
+}
+
+/* ============================================================
+   STATIC FALLBACKS — reduced motion, or environments that never
+   advance CSS transitions/animations (html.anim-off)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .chip, .hero-grid-lines, .head-grid-lines { animation: none !important; }
+  .dbar, .donut-fill, .dash-line, .dash-area { animation: none !important; stroke-dashoffset: 0 !important; transform: none !important; }
+  .dash-dot, .dash-halo { display: none; }
+}
+
+.anim-off *, .anim-off *::before, .anim-off *::after {
+  animation: none !important;
+  transition: none !important;
+}
+.anim-off .reveal { opacity: 1 !important; transform: none !important; }
+.anim-off .dash-area { opacity: 1 !important; }
+.anim-off .dash-line { stroke-dashoffset: 0 !important; }
+.anim-off .dash-dot, .anim-off .dash-halo { display: none; }
+.anim-off .donut-fill { stroke-dashoffset: 81 !important; }
+.anim-off .dbar { transform: none !important; }
+.anim-off .rule-bar { transform: none !important; opacity: 1 !important; }
+.anim-off .ff { display: none; }
+.anim-off .coin3d-inner { transform: rotateY(-18deg); }
+.anim-off .coin-buddy { animation: none; }
+.anim-off .coin-buddy .eye { transform: none; }
+.anim-off .section-title .word { opacity: 1 !important; transform: none !important; }
+.anim-off #progress::after { animation: none; }
